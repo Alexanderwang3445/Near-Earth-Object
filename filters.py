@@ -129,12 +129,11 @@ def limit(iterator, n=None):
     :yield: The first (at most) `n` values from the iterator.
     """
     # TODO: Produce at most `n` values from the given iterator.
-    produced = []
+    import itertools
     if n==None or n==0:
-        while True:
-            produced.append(next(iterator))
+        for i, element in enumerate(iterator):
+            yield element
     else:
-        for x in range(n):
-            produced.append(next(iterator))
-            
-    return produced
+        for i, element in enumerate(iterator):
+            if i<n:
+                yield element
